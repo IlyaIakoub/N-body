@@ -1,7 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-from numba import jit
 
 G=4*np.pi**2
 
@@ -27,11 +26,9 @@ class planet:
 
 #I added 0.01 to r so that speed cannot be infinite, consider this the radius of the planet
 #The radius is proportionnal to the mass, all planets have the density of the sun
-@jit
 def gravity_x(x1, x2, y1, y2, M_planete ):
     f = -((G*M_planete*(x1-x2))/(((x1-x2)**2+(y1-y2)**2 + 0.00465047*M_planete)**(3/2)))#-((G*2*(x1))/(((x1)**2+(y1)**2 + 0.01)**(3/2)))#Last part is an unmoving so, remove it if you want
     return f
-@jit
 def gravity_y(x1, x2, y1, y2, M_planete):
     f = -((G*M_planete*(y1-y2))/(((x1-x2)**2+(y1-y2)**2 + 0.00465047*M_planete)**(3/2)))#-((G*2*(y1))/(((x1)**2+(y1)**2 + 0.01)**(3/2)))#Last part is an unmoving so, remove it if you want
     return f
