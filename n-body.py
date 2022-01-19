@@ -1,8 +1,6 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-#from numba import jit
-
 #Constante
 G=4*np.pi**2
 #Masses en masse du soleil, positions en UA, temps en années
@@ -30,12 +28,10 @@ class planet:
         return planet.x_tab, planet.y_tab
 
 #On ajoute le rayon de la planète au rayon dans la formule afin d'éviter une division par 0 qui donnerait des vitesses infinies, tous les planètes ont la même densitée (M/R)
-#@jit
 def gravity_x(x1, x2, y1, y2, M_planete):
     f = -((G*M_planete*(x1-x2))/(((x1-x2)**2+(y1-y2)**2 + 0.00465047*M_planete)**(3/2)))
     return f
-#Pas sur si @jit fonctionne ou change quelque chose mais au moins j'ai essayé...
-#@jit
+
 def gravity_y(x1, x2, y1, y2, M_planete):
     f = -((G*M_planete*(y1-y2))/(((x1-x2)**2+(y1-y2)**2 + 0.00465047*M_planete)**(3/2)))
     return f
